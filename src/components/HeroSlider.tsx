@@ -38,14 +38,14 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
           }`}
         >
           <div
-            className="w-full h-full bg-gradient-to-r from-blue-500 to-sky-400 flex items-center justify-center"
+            className="w-full h-full bg-linear-to-r from-blue-500 to-sky-400 flex items-center justify-center"
             style={{
               backgroundImage: `url(${slide.image})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center'
             }}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/50 to-transparent"></div>
+            <div className="absolute inset-0 bg-linear-to-r from-blue-900/50 to-transparent"></div>
 
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="max-w-xl">
