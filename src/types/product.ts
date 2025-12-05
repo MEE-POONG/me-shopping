@@ -4,6 +4,10 @@ export interface Product {
   price: number;
   originalPrice?: number;
   image: string;
+  category?: string;
+  description?: string;
+  rating?: number;
+  reviews?: number;
   badge?: string;
   badgeColor?: 'red' | 'blue' | 'green' | 'yellow';
 }

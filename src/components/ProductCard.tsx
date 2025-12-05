@@ -1,12 +1,20 @@
+'use client';
+
 import React from 'react';
 import { ShoppingCart } from 'lucide-react';
 import { Product } from '@/types/product';
+
+import Link from 'next/link';
+
+import { useCart } from '@/context/CartContext';
 
 interface ProductCardProps {
   product: Product;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const { addToCart } = useCart();
+
   const discountPercentage = product.originalPrice
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : 0;
@@ -18,10 +26,15 @@ export default function ProductCard({ product }: ProductCardProps) {
     yellow: 'bg-yellow-500'
   };
 
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent navigation to detail page
+    addToCart(product);
+  };
+
   return (
     <div className="group bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
       {/* Product Image */}
-      <div className="relative aspect-square overflow-hidden bg-gray-100">
+      <Link href={`/products/${product.id}`} className="block relative aspect-square overflow-hidden bg-gray-100">
         <img
           src={product.image}
           alt={product.name}
@@ -41,13 +54,15 @@ export default function ProductCard({ product }: ProductCardProps) {
             -{discountPercentage}%
           </div>
         )}
-      </div>
+      </Link>
 
       {/* Product Info */}
       <div className="p-4">
-        <h3 className="text-gray-800 font-medium text-sm md:text-base mb-2 line-clamp-2 min-h-[2.5rem]">
-          {product.name}
-        </h3>
+        <Link href={`/products/${product.id}`}>
+          <h3 className="text-gray-800 font-medium text-sm md:text-base mb-2 line-clamp-2 min-h-[2.5rem] hover:text-blue-600 transition-colors">
+            {product.name}
+          </h3>
+        </Link>
 
         {/* Price */}
         <div className="mb-3">
@@ -64,7 +79,10 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
 
         {/* Add to Cart Button */}
-        <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2 group/btn">
+        <button
+          onClick={handleAddToCart}
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2 group/btn"
+        >
           <ShoppingCart className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
           <span className="text-sm md:text-base">เพิ่มลงตะกร้า</span>
         </button>

@@ -6,6 +6,9 @@ import Footer from '@/components/Footer';
 import { HeroSlide, PromoBanner, Product } from '@/types/product';
 
 // Mock Data
+import { allProducts } from '@/data/products';
+
+// Mock Data
 const heroSlides: HeroSlide[] = [
   {
     id: 1,
@@ -60,110 +63,9 @@ const promoBanners: PromoBanner[] = [
   }
 ];
 
-const flashSaleProducts: Product[] = [
-  {
-    id: 1,
-    name: 'สมาร์ทโฟน รุ่นใหม่ล่าสุด หน้าจอ 6.5 นิ้ว',
-    price: 8990,
-    originalPrice: 12990,
-    image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500&h=500&fit=crop',
-    badge: 'FLASH SALE',
-    badgeColor: 'red'
-  },
-  {
-    id: 2,
-    name: 'หูฟังบลูทูธ ตัดเสียงรบกวน',
-    price: 1290,
-    originalPrice: 2990,
-    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop',
-    badge: 'FLASH SALE',
-    badgeColor: 'red'
-  },
-  {
-    id: 3,
-    name: 'นาฬิกาสมาร์ทวอทช์ กันน้ำ',
-    price: 2490,
-    originalPrice: 4990,
-    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop',
-    badge: 'FLASH SALE',
-    badgeColor: 'red'
-  },
-  {
-    id: 4,
-    name: 'กล้องแอคชั่น 4K Ultra HD',
-    price: 3990,
-    originalPrice: 6990,
-    image: 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=500&h=500&fit=crop',
-    badge: 'FLASH SALE',
-    badgeColor: 'red'
-  }
-];
-
-const recommendProducts: Product[] = [
-  {
-    id: 5,
-    name: 'แท็บเล็ต 10.1 นิ้ว ความจุ 128GB',
-    price: 7990,
-    image: 'https://images.unsplash.com/photo-1561154464-82e9adf32764?w=500&h=500&fit=crop',
-    badge: 'แนะนำ',
-    badgeColor: 'blue'
-  },
-  {
-    id: 6,
-    name: 'เมาส์ไร้สาย ergonomic design',
-    price: 590,
-    image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500&h=500&fit=crop'
-  },
-  {
-    id: 7,
-    name: 'คีย์บอร์ดเกมมิ่ง RGB LED',
-    price: 1490,
-    image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500&h=500&fit=crop',
-    badge: 'ขายดี',
-    badgeColor: 'green'
-  },
-  {
-    id: 8,
-    name: 'ลำโพงบลูทูธ กันน้ำ IPX7',
-    price: 890,
-    image: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&h=500&fit=crop'
-  }
-];
-
-const newProducts: Product[] = [
-  {
-    id: 9,
-    name: 'แว่นตา VR รุ่นใหม่ล่าสุด',
-    price: 5990,
-    image: 'https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=500&h=500&fit=crop',
-    badge: 'NEW',
-    badgeColor: 'yellow'
-  },
-  {
-    id: 10,
-    name: 'Power Bank 20000mAh ชาร์จเร็ว',
-    price: 790,
-    image: 'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=500&h=500&fit=crop',
-    badge: 'NEW',
-    badgeColor: 'yellow'
-  },
-  {
-    id: 11,
-    name: 'กระเป๋าแล็ปท็อป กันกระแทก 15.6 นิ้ว',
-    price: 690,
-    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=500&fit=crop',
-    badge: 'NEW',
-    badgeColor: 'yellow'
-  },
-  {
-    id: 12,
-    name: 'ขาตั้งมือถือ 3 in 1 พับเก็บได้',
-    price: 390,
-    image: 'https://images.unsplash.com/photo-1519558260268-cde7e03a0152?w=500&h=500&fit=crop',
-    badge: 'NEW',
-    badgeColor: 'yellow'
-  }
-];
+const flashSaleProducts = allProducts.filter(p => p.badge === 'FLASH SALE');
+const recommendProducts = allProducts.filter(p => p.badge === 'แนะนำ' || (!p.badge && p.price < 1000)).slice(0, 4);
+const newProducts = allProducts.filter(p => p.badge === 'NEW');
 
 export default function Home() {
   return (
